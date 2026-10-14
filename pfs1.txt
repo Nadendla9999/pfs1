@@ -1,0 +1,237 @@
+PFS1 - PYTHON BASICS AND OOP NOTES
+=================================
+
+1. WHY DO SOFTWARE COMPANIES USE PYTHON?
+----------------------------------------
+Python is popular because its syntax is readable, it helps developers build solutions quickly, and it has many libraries for different kinds of work. It is used in web development, automation, data analysis, artificial intelligence, testing, and scientific computing.
+
+Real-world examples:
+- YouTube and other online services use Python in parts of their backend systems.
+- A company can use Python scripts to automatically rename files, create reports, or check data.
+- Data analysts use Python to clean sales data and create charts.
+- Machine-learning teams use Python libraries to train and use prediction models.
+- Test engineers use Python to automate repeated software tests.
+
+Python is not the only language used for these jobs, and not every company uses it for every system.
+
+2. FEATURES OF PYTHON WITH REAL-WORLD EXAMPLES
+----------------------------------------------
+1. Simple and readable syntax
+   Meaning: Python code is usually easy to read.
+   Example:
+       price = 100
+       quantity = 3
+       print(price * quantity)
+   Real-world use: Calculating the total cost of items in a small billing program.
+
+2. High-level language
+   Meaning: Developers can work with familiar instructions without managing most hardware details.
+   Real-world use: Building business applications without writing machine-level instructions.
+
+3. Interpreted execution
+   Meaning: Python code is run by the Python runtime; developers usually do not manually compile it into a standalone executable first.
+   Real-world use: Quickly trying a small calculation or testing a new feature.
+
+4. Dynamic typing
+   Meaning: You do not have to declare a variable's type in advance.
+   Example:
+       value = 10
+       value = "Hello"
+   Real-world use: Quickly processing data whose values may have different types. Good naming and care are still important.
+
+5. Cross-platform support
+   Meaning: Python is available on Windows, macOS, and Linux.
+   Real-world use: A script can often be shared between a developer's laptop and a Linux server, sometimes with small changes.
+
+6. Free and open source
+   Meaning: Python can be used freely, and its source code is publicly available.
+   Real-world use: Students, startups, and companies can learn and build with it without buying a Python language licence.
+
+7. Large standard library
+   Meaning: Python includes modules for many common tasks.
+   Real-world use: Reading files, working with dates, processing JSON, and connecting to internet services.
+
+8. Third-party libraries
+   Meaning: Extra packages add more capabilities.
+   Examples: pandas for data analysis, Django and Flask for web development, and scikit-learn for machine learning.
+   Real-world use: A sales team can analyse spreadsheet data with pandas.
+
+9. Object-oriented programming support
+   Meaning: Python supports classes and objects.
+   Real-world use: Modelling students, bank accounts, products, or employees in software.
+
+10. Automation support
+    Meaning: Python can repeat tasks automatically.
+    Real-world use: Creating a daily report or checking many files without doing each one manually.
+
+11. Database connectivity
+    Meaning: Python can communicate with databases through suitable libraries.
+    Real-world use: A shop application can save and retrieve product and order records.
+
+12. Exception handling
+    Meaning: Programs can respond to errors using try and except.
+    Example:
+        try:
+            number = int("abc")
+        except ValueError:
+            print("Please enter a valid number")
+    Real-world use: Showing a helpful message instead of abruptly stopping when a user enters invalid input.
+
+3. OOP IN PYTHON
+----------------
+OOP means Object-Oriented Programming. It organises a program around classes and objects.
+
+- Class: A blueprint, such as a design for a car.
+- Object: A specific instance created from a class, such as one particular car.
+- Attribute: Data belonging to an object, such as its colour.
+- Method: A function defined in a class, such as start().
+
+Simple example:
+    class Car:
+        def __init__(self, brand):
+            self.brand = brand
+
+        def start(self):
+            print(self.brand, "is starting")
+
+    my_car = Car("Toyota")
+    my_car.start()
+
+Output:
+    Toyota is starting
+
+Real-world connection: The Car class describes what a car has and can do. my_car is one specific car object.
+
+4. THE FOUR PILLARS OF OOP IN PYTHON
+------------------------------------
+
+A. ENCAPSULATION
+Meaning:
+Combining data and methods in a class and controlling how data is accessed.
+
+Real-world example:
+A bank account lets a customer deposit or withdraw money through defined operations rather than changing internal account data directly.
+
+Python example:
+    class BankAccount:
+        def __init__(self, balance):
+            self.__balance = balance
+
+        def deposit(self, amount):
+            if amount > 0:
+                self.__balance += amount
+
+        def get_balance(self):
+            return self.__balance
+
+    account = BankAccount(1000)
+    account.deposit(500)
+    print(account.get_balance())
+
+Output:
+    1500
+
+Explanation:
+The double underscore in __balance triggers name mangling, making accidental direct access harder. It is not absolute security, but it encourages controlled access through methods.
+
+B. INHERITANCE
+Meaning:
+A child class can reuse accessible methods and attributes from a parent class.
+
+Real-world example:
+A Dog is an Animal, so it can use general animal behaviour and also have dog-specific behaviour.
+
+Python example:
+    class Animal:
+        def eat(self):
+            print("Eating")
+
+    class Dog(Animal):
+        def bark(self):
+            print("Barking")
+
+    dog = Dog()
+    dog.eat()
+    dog.bark()
+
+Output:
+    Eating
+    Barking
+
+Explanation:
+Dog inherits the eat() method from Animal.
+
+C. POLYMORPHISM
+Meaning:
+Different object types can respond to the same method name in different ways.
+
+Real-world example:
+The same action, make_sound(), produces a bark for a dog and a meow for a cat.
+
+Python example:
+    class Dog:
+        def make_sound(self):
+            print("Bark")
+
+    class Cat:
+        def make_sound(self):
+            print("Meow")
+
+    for animal in [Dog(), Cat()]:
+        animal.make_sound()
+
+Output:
+    Bark
+    Meow
+
+Explanation:
+The same method call works with both objects, and each class provides its own behaviour.
+
+D. ABSTRACTION
+Meaning:
+Showing essential operations while hiding implementation details.
+
+Real-world example:
+A person uses a payment app by choosing Pay. They do not need to understand every internal step used to process the payment.
+
+Python example:
+    from abc import ABC, abstractmethod
+
+    class Payment(ABC):
+        @abstractmethod
+        def pay(self, amount):
+            pass
+
+    class UpiPayment(Payment):
+        def pay(self, amount):
+            print("Paid", amount, "using UPI")
+
+    payment = UpiPayment()
+    payment.pay(250)
+
+Output:
+    Paid 250 using UPI
+
+Explanation:
+Payment defines the operation that a payment method must provide. UpiPayment supplies the implementation.
+
+5. QUICK REVISION
+-----------------
+Encapsulation = group data and methods; control access.
+Inheritance   = reuse accessible functionality from a parent class.
+Polymorphism  = same interface or method call, different behaviour.
+Abstraction   = show essential operations and hide implementation details.
+
+Python feature vs OOP pillar:
+- Features describe general capabilities of the Python language.
+- The four pillars are core ideas used in object-oriented programming.
+
+NOTE ABOUT IMAGES
+-----------------
+A plain .txt file cannot embed actual pictures. This file uses text examples and explanations so it stays readable in any text editor. If you need visual diagrams, put these notes into a PDF or presentation with diagrams of:
+1. Python uses: web, automation, data, AI, and testing.
+2. Class -> Object, with attributes and methods.
+3. Encapsulation: object data behind methods.
+4. Inheritance: Animal -> Dog.
+5. Polymorphism: make_sound() -> Bark / Meow.
+6. Abstraction: Payment interface -> UPI implementation.
